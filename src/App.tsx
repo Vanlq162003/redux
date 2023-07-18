@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, BrowserRouter   } from 'react-router-dom';
+import Home from './clients/Home';
+import Client from './layouts/Client';
+import Products from './clients/Products';
+import Signin from './clients/Signin';
+import Register from './clients/Register';
+import Checkout from './clients/Checkout';
+import NotFoundPage from './clients/NotFoundPage';
+import Profile from './clients/Profile';
+import ProductDetail from './clients/ProductDetail';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <>
+    <BrowserRouter>
+    
+      <Routes>
+        <Route path="/" element={<Client />}>
+          <Route path="" element={<Home />} />
+          <Route path="products" element={<Products/>} />
+          <Route path="products/detail" element={< ProductDetail/>} />
+          <Route path="checkout" element={<Checkout/>} />
+          <Route path="profile" element={<Profile/>} />
+          
+        </Route>
+        <Route path='/signin' element={<Signin/>}/>
+        <Route path='/register' element={<Register/>}/>
+        <Route path='*' element={<NotFoundPage/>}/>
+      </Routes>
+    </BrowserRouter>
+
+  </>
 }
 
 export default App;
